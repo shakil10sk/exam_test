@@ -1,0 +1,49 @@
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width:600px) {
+    .pname.col-sm-6 {
+        margin-top: 93px;
+        font-size: 28px;
+        color: wheat;
+        position: relative;
+        right: 50px;
+    }
+    .navbar-header{
+        float: right;
+    }
+    .imagesA{
+        float: right;
+    }
+    .Abedon{
+        margin-left: 90px; 
+    }
+     .Abedon1{
+        margin-left: 90px; 
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width:600px) and (max-width:768px) {
+    .pname.col-sm-6 {
+        margin-top: 45px;
+        font-size: 30px;
+        color: wheat;
+        position: relative;
+        right: 225px;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width:769px) {
+    .pname.col-sm-6 {
+        margin-top: 65px;
+        font-size: 30px;
+        color: wheat;
+        position: relative;
+        right: 379px;
+    }
+}
