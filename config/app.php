@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Digital_Union_Apps'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Dhaka',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:5pOI5j5qQvBB0t30aUgQEHCFOcwvTql4whzw/oygvZ8='),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -174,16 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-
-        //this is for pdf
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
-
-        //this is for qr code generator
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
-        //This is for sweetalert
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -217,6 +207,7 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -235,16 +226,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-
-        //this is for pdf
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
-
-        //this is for qr code 
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-
-        //this id for sweetalert
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 
