@@ -1,3 +1,12 @@
-*
-!data/
 !.gitignore
+.env
+/vendor
+
+
+!default.jpg
+!default.png
+!composer.json
+composer.lock
+!package.json
+/.vscode
+.cache/
