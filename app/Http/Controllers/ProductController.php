@@ -19,7 +19,8 @@ class ProductController extends Controller
     public function index()
     {
         $data = DB::table('products AS P')
-                            ->select('P.title','P.description','PV.variant AS variend_one','PVT.variant AS variend_two','PVP.price','PVP.stock')
+                            ->select('P.title','P.description','P.created_at','PV.variant AS variend_one','PVT.variant AS variend_two','PVP.price','PVP.stock')
+                            // ->select( DB::raw('GROUP_CONCAT(P.title) AS title'),DB::raw('GROUP_CONCAT(P.description) AS description'),'PV.variant AS variend_one','PVT.variant AS variend_two','PVP.price','PVP.stock')
 
                             ->leftJoin('product_variant_prices AS PVP',function($join){
                                 $join->on('PVP.product_id','=','P.id');
@@ -30,43 +31,15 @@ class ProductController extends Controller
                             ->leftJoin('product_variants AS PVT',function($join){
                                 $join->on('PVT.id','=','PVP.product_variant_two');
                             })
-                            ->get()
-                            ->groupBy('P.title')
-                            ->groupBy('P.description');
+                            ->groupBy('P.id')
+                            ->paginate(2);
+                            // ->groupBy('P.description');
 
-                            dd($data);
+                            // dd($data);
 
-        $product_info = DB::table('products')->get();
+            $variants = DB::table('product_variants')->get();
 
-        $data = [];
-
-        foreach($product_info AS $key => $value){
-
-            $data[$key]= DB::table('product_variant_prices AS PVP')
-                                ->select('PV.variant AS variend_one','PVT.variant AS variend_two','PVP.price','PVP.stock','PVP.*')
-                                    ->join('product_variants AS PV',function($join){
-                                        $join->on('PV.id','=','PVP.product_variant_one');
-                                    })
-                                    ->join('product_variants AS PVT',function($join){
-                                        $join->on('PVT.id','=','PVP.product_variant_two');
-                                    })
-                                    ->where('PVP.product_id',$value->id)
-                                    ->get();
-
-        }
-
-
-        $details = [
-            'product_inf' => $product_info,
-            'varient_info' => $data,
-        ];
-
-// echo "<pre>";
-// print_r($data);
-// echo "</pre>";
-            // dd($data);
-
-        return view('products.index',compact('details'));
+        return view('products.index',compact('data','variants'));
     }
 
     /**

@@ -14,8 +14,12 @@
                     <input type="text" name="title" placeholder="Product Title" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <select name="variant" id="" class="form-control">
 
+                    <select name="variant" id="" class="form-control">
+                        <option value="" disabled>Color</option>
+                        @foreach ($variants as  $color)
+                            <option value="{{ $color->id }}">{{ $color->variant }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -52,24 +56,22 @@
 
                     <tbody>
 
-                    @foreach ($details as $key => $value )
-                        @foreach ($value['product_inf'] as  )
-
-                        @endforeach
+                    @foreach ($data as $key => $value )
                     <tr>
                         <td>{{ ++$key }}</td>
-                        <td>{{ $value['title'] }} <br> Created at : 25-Aug-2020</td>
-                        <td>Quality product in low cost</td>
+                        <td>{{ $value->title }} <br>
+                            Created at : {{ \Carbon\Carbon::parse($value->created_at)->format('d-M-Y') }}</td>
+                        <td>{{ $value->description }}</td>
                         <td>
                             <dl class="row mb-0" style="height: 80px; overflow: hidden" id="variant">
 
                                 <dt class="col-sm-3 pb-0">
-                                    SM/ Red/ V-Nick
+                                    {{ $value->variend_two }} / {{$value->variend_one}} /
                                 </dt>
                                 <dd class="col-sm-9">
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-4 pb-0">Price : {{ number_format(200,2) }}</dt>
-                                        <dd class="col-sm-8 pb-0">InStock : {{ number_format(50,2) }}</dd>
+                                        <dt class="col-sm-4 pb-0">Price : {{ number_format($value->price,2) }}</dt>
+                                        <dd class="col-sm-8 pb-0">InStock : {{ number_format($value->stock,2) }}</dd>
                                     </dl>
                                 </dd>
                             </dl>
@@ -98,7 +100,7 @@
                     <p>Showing 1 to 10 out of 100</p>
                 </div>
                 <div class="col-md-2">
-
+                        {{ $data->links()}}
                 </div>
             </div>
         </div>
