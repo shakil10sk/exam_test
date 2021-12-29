@@ -97,7 +97,7 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <div class="col-md-6">
-                    <p>Showing 1 to 10 out of 100</p>
+                    <p>Showing {{ $data->count() }} to {{ $data->currentPage() }} out of {{ $data->total() }}</p>
                 </div>
                 <div class="col-md-2">
                         {{ $data->links()}}
